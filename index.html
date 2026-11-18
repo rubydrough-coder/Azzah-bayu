@@ -47,6 +47,10 @@ canvas{width:100%;height:100%;display:block}
 input,textarea{width:100%;font:14px inherit;font-family:inherit;padding:9px;border:2px solid #ecd9b5;border-radius:10px;margin:4px 0;background:#fff;color:var(--ink)}
 label{font-size:13px;margin-right:12px}
 #fade{position:absolute;inset:0;background:#fff4dc;opacity:0;pointer-events:none;z-index:9}
+#ayam{position:absolute;top:calc(96px + env(safe-area-inset-top,0px));left:-50px;font-size:30px;z-index:3;background:none;border:0;padding:6px;animation:jalan 26s linear infinite}
+@keyframes jalan{0%{left:-50px;transform:scaleX(-1)}48%{left:100%;transform:scaleX(-1)}52%{left:100%;transform:scaleX(1)}100%{left:-50px;transform:scaleX(1)}}
+.cf{position:absolute;top:-30px;font-size:22px;z-index:20;pointer-events:none;animation:jatuh 3s ease-in forwards}
+@keyframes jatuh{to{transform:translateY(105vh) rotate(540deg)}}
 #modal{opacity:0;transition:opacity .3s ease}#modal.on{opacity:1}
 #box{transform:translateY(14px) scale(.97);transition:transform .38s cubic-bezier(.2,.8,.2,1)}#modal.on #box{transform:none}
 #pick{inset:auto 0 0 0;max-height:64%;overflow-y:auto;background:var(--card);border-radius:28px 28px 0 0;justify-content:flex-start;gap:8px;padding:16px 16px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -5px 0 #e8d3a6;touch-action:pan-y}
@@ -65,7 +69,7 @@ label{font-size:13px;margin-right:12px}
 <div id="title"><small>PERNIKAHAN DI TENGAH KEBUN</small><b>Azzah &amp; Bayu</b><i>SABTU · 19 JUNI 2027</i></div>
 <div id="joy"><div id="knob"></div></div>
 <button id="mus">🎵</button><button id="act">BUKA</button>
-<div id="say"><em id="who"></em><span id="txt"></span></div>
+<div id="say"><em id="who"></em><span id="txt"></span></div><button id="ayam" aria-label="ayam">🐔</button>
 <div id="tabs"><button data-g="surat">Surat buat kamu</button><button data-g="detail">Detail acara</button><button data-g="rsvp">Ucapan &amp; RSVP</button><button data-g="kado">Kado 🎁</button></div>
 <div id="pick"><h2>Dandan dulu yuk ✨</h2><p>Biar cakep di pesta kebun Azzah &amp; Bayu</p><div id="cards"><button data-s="boy" class="on"><span>👦</span>Cowok</button><button data-s="girl"><span>👧</span>Cewek</button></div><p>Warna baju</p><div id="sw"><i data-c="#6a8fd9" class="on"></i><i data-c="#e8a1c4"></i><i data-c="#b79ae6"></i><i data-c="#7fc98f"></i><i data-c="#f2b36d"></i></div><p>Rambut</p><div class="ch" data-k="h"><b data-v="short">Pendek</b><b data-v="long">Panjang</b><b data-v="bun">Cepol</b></div><p>Aksesori</p><div class="ch" data-k="a"><b data-v="hat">Topi</b><b data-v="glasses">Kacamata</b><b data-v="flower">Bunga</b></div><input id="nm" placeholder="Namamu (boleh dikosongkan)" maxlength="20"><button class="btn" id="go" style="max-width:260px">Masuk ke kebun 🌷</button></div>
 <div id="modal"><div id="box"><button id="x">×</button><div id="in"></div></div></div>
@@ -275,6 +279,9 @@ function show(k){burst(P.x,P.z);
  if(k==='foto')open('<h2>Foto kami</h2><p>Dua orang yang sebentar lagi jadi satu keluarga 💛</p><div style="display:flex;gap:10px;margin-top:8px"><figure><img src="foto-azzah.jpg" alt="Azzah" onerror="ph(this)"><figcaption>Azzah</figcaption></figure><figure><img src="foto-bayu.jpg" alt="Bayu" onerror="ph(this)"><figcaption>Bayu</figcaption></figure></div>');
  if(k==='janji')say('Azzah & Bayu','Terima kasih sudah datang! Mau selfie bareng kami? Pencet tombol 📸 ya 💛')}
 function ph(i){const d=document.createElement('div');d.className='ph';d.textContent=i.alt==='Azzah'?'👰':'🤵';i.replaceWith(d)}
+let ayamN=0;
+function pesta(){const E=['🎉','💛','🌻','🌷','🐔','✨','💐','🎊'],a=document.getElementById('app');for(let i=0;i<36;i++){const e=document.createElement('span');e.className='cf';e.textContent=E[i%E.length];e.style.left=Math.random()*95+'%';e.style.animationDelay=Math.random()*.8+'s';e.style.animationDuration=2.4+Math.random()*1.6+'s';a.appendChild(e);setTimeout(()=>e.remove(),5000)}}
+document.getElementById('ayam').onclick=()=>{ayamN++;if(ayamN<3){say('Ayam','Kok-kok! 🐔 Tap lagi...')}else{ayamN=0;pesta();say('Ayam','Kok-kok-kok! Selamat menempuh hidup baru, Azzah & Bayu! 🐔💛')}};
 const SHEET_URL='https://script.google.com/macros/s/AKfycbxGdoOOJBZ6QW7f0n87Ln2lqlPhS0be49hOIUzb8tRvwDsg_ePH28CX9nQZNSZlkkd0/exec';
 const EMO=['🐔','🐮','🌻','🐑','🐝','🍓','🥕','🌷'];
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -286,7 +293,7 @@ function rsvp(skip,thanks){open('<h2>Ucapan &amp; RSVP</h2><input id="n" placeho
  if(SHEET_URL&&!skip)fetch(SHEET_URL+'?t='+Date.now()).then(r=>r.json()).then(d=>{ucapan.length=0;d.forEach(x=>ucapan.push([x.n,x.h,x.m]));drawWish()}).catch(drawWish)}
 function send(){const n=(document.getElementById('n').value.trim()||'Tamu').slice(0,40),h=document.querySelector('input[name=h]:checked').value,m=document.getElementById('m').value.trim().slice(0,300);if(!m)return;ucapan.unshift([n,h,m]);
  if(SHEET_URL)fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({n,h,m})}).catch(()=>{});
- rsvp(true,true)}
+ rsvp(true,true);pesta()}
 function say(w,t){const q=NPC.find(n=>n.n===w);focus=q?{x:q.x,z:q.z}:(w==='Azzah & Bayu'?{x:9,z:7.2}:null);document.getElementById('who').textContent=w;document.getElementById('txt').textContent=t;sayEl.style.display='block';clearTimeout(sayT);sayT=setTimeout(()=>sayEl.style.display='none',4500)}
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>walk(b.dataset.g));
 const act=document.getElementById('act');act.onclick=()=>near&&show(near);
