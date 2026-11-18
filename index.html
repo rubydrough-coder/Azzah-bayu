@@ -47,8 +47,19 @@ canvas{width:100%;height:100%;display:block}
 input,textarea{width:100%;font:14px inherit;font-family:inherit;padding:9px;border:2px solid #ecd9b5;border-radius:10px;margin:4px 0;background:#fff;color:var(--ink)}
 label{font-size:13px;margin-right:12px}
 #fade{position:absolute;inset:0;background:#fff4dc;opacity:0;pointer-events:none;z-index:9}
-#ayam{position:absolute;top:calc(96px + env(safe-area-inset-top,0px));left:-50px;font-size:30px;z-index:3;background:none;border:0;padding:6px;animation:jalan 26s linear infinite}
-@keyframes jalan{0%{left:-50px;transform:scaleX(-1)}48%{left:100%;transform:scaleX(-1)}52%{left:100%;transform:scaleX(1)}100%{left:-50px;transform:scaleX(1)}}
+#ayam{position:absolute;top:calc(60px + env(safe-area-inset-top,0px));right:14px;font-size:22px;z-index:3;background:none;border:0;padding:4px;opacity:.7}
+#welcome{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(160deg,#fff4dc,#fbd9e2 60%,#e9f3d0);color:#5c3a1e;transition:opacity .8s;padding:24px;overflow:hidden}
+#welcome .wl{position:relative;z-index:1}#welcome .wl>*{display:block;opacity:0;animation:naik .9s ease forwards}
+@keyframes naik{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+#welcome small{letter-spacing:.22em;font-weight:800;font-size:12px}#welcome .w2{font-size:22px;font-weight:700;margin-top:6px}
+#welcome b{font-size:46px;line-height:1.1;margin:14px 0 8px}#welcome i{font-style:normal;font-weight:700}
+#welcome button{margin:28px auto 0;border:0;border-radius:99px;background:#d9667a;color:#fff;font:800 16px inherit;font-family:inherit;padding:14px 28px;box-shadow:0 4px 0 #a9435a}
+.pt{position:absolute;top:-30px;font-size:20px;pointer-events:none;animation:jatuh 8s linear forwards}
+#vt{position:relative;background:#0a0a0f;border:6px solid #2b2b33;border-radius:10px;box-shadow:0 0 0 3px #555,0 0 24px #7fd0ff66;overflow:hidden;aspect-ratio:16/10;margin:8px 0}
+#vt img{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;display:block;margin:0;border-radius:0;transition:opacity .35s}
+#vt i{position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 2px,#0003 2px 3px);pointer-events:none}
+#vc{position:absolute;right:8px;bottom:6px;color:#fff;font:700 11px system-ui;background:#0008;padding:2px 6px;border-radius:6px}
+#tabs{overflow-x:auto;scrollbar-width:none}#tabs::-webkit-scrollbar{display:none}
 .cf{position:absolute;top:-30px;font-size:22px;z-index:20;pointer-events:none;animation:jatuh 3s ease-in forwards}
 @keyframes jatuh{to{transform:translateY(105vh) rotate(540deg)}}
 #modal{opacity:0;transition:opacity .3s ease}#modal.on{opacity:1}
@@ -69,8 +80,8 @@ label{font-size:13px;margin-right:12px}
 <div id="title"><small>PERNIKAHAN DI TENGAH KEBUN</small><b>Azzah &amp; Bayu</b><i>SABTU · 19 JUNI 2027</i></div>
 <div id="joy"><div id="knob"></div></div>
 <button id="mus">🎵</button><button id="act">BUKA</button>
-<div id="say"><em id="who"></em><span id="txt"></span></div><button id="ayam" aria-label="ayam">🐔</button>
-<div id="tabs"><button data-g="surat">Surat buat kamu</button><button data-g="detail">Detail acara</button><button data-g="rsvp">Ucapan &amp; RSVP</button><button data-g="kado">Kado 🎁</button></div>
+<div id="say"><em id="who"></em><span id="txt"></span></div><button id="ayam" aria-label="ayam">🐔</button><div id="welcome"><div class="wl"><small style="animation-delay:.3s">SELAMAT DATANG</small><span class="w2" style="animation-delay:1s">di pernikahan kami</span><b style="animation-delay:1.9s">Azzah &amp; Bayu</b><i style="animation-delay:2.6s">Sabtu · 19 Juni 2027</i><button id="wgo" style="animation-delay:3.4s">Masuk ke kebun 🌷</button></div></div>
+<div id="tabs"><button data-g="surat">Surat buat kamu</button><button data-g="detail">Detail acara</button><button data-g="rsvp">Ucapan &amp; RSVP</button><button data-g="kado">Kado 🎁</button><button data-g="foto">Videotron 📺</button></div>
 <div id="pick"><h2>Dandan dulu yuk ✨</h2><p>Biar cakep di pesta kebun Azzah &amp; Bayu</p><div id="cards"><button data-s="boy" class="on"><span>👦</span>Cowok</button><button data-s="girl"><span>👧</span>Cewek</button></div><p>Warna baju</p><div id="sw"><i data-c="#6a8fd9" class="on"></i><i data-c="#e8a1c4"></i><i data-c="#b79ae6"></i><i data-c="#7fc98f"></i><i data-c="#f2b36d"></i></div><p>Rambut</p><div class="ch" data-k="h"><b data-v="short">Pendek</b><b data-v="long">Panjang</b><b data-v="bun">Cepol</b></div><p>Aksesori</p><div class="ch" data-k="a"><b data-v="hat">Topi</b><b data-v="glasses">Kacamata</b><b data-v="flower">Bunga</b></div><input id="nm" placeholder="Namamu (boleh dikosongkan)" maxlength="20"><button class="btn" id="go" style="max-width:260px">Masuk ke kebun 🌷</button></div>
 <div id="modal"><div id="box"><button id="x">×</button><div id="in"></div></div></div>
 </div>
@@ -228,7 +239,7 @@ const ntx=new THREE.CanvasTexture(nc),notes=[];for(let i=0;i<5;i++){const s=new 
 function bandFx(t,dt){notes.forEach((n,i)=>{const u=n.userData;u.t=(u.t+dt*.3)%1;n.position.set(14.2+Math.sin(u.t*5+i*1.3)*1.2,1.9+u.t*2,9.8);n.material.opacity=Math.min(1,u.t*5)*(1-u.t)})}
 // === akhir band ===
 // titik interaktif
-const spots={surat:{x:6.5,z:17.5,l:'Surat buat kamu',c:'#e66a78'},detail:{x:4.5,z:11.5,l:'Detail acara',c:'#f3e2bd',d:1},rsvp:{x:11.5,z:18.5,l:'Ucapan & RSVP',c:'#f3e2bd'},janji:{x:9,z:8.2,l:'Janji suci',c:'#fff',h:2.2},foto:{x:14,z:13.3,l:'Foto kami',c:'#ffd9e4',d:1},kado:{x:14.6,z:17.4,l:'Kado digital',c:'#fff',d:1,h:2.6}};
+const spots={surat:{x:6.5,z:17.5,l:'Surat buat kamu',c:'#e66a78'},detail:{x:4.5,z:11.5,l:'Detail acara',c:'#f3e2bd',d:1},rsvp:{x:11.5,z:18.5,l:'Ucapan & RSVP',c:'#f3e2bd'},janji:{x:9,z:8.2,l:'Janji suci',c:'#fff',h:2.2},foto:{x:14,z:13.3,l:'Videotron',c:'#ffd9e4',d:1},kado:{x:14.6,z:17.4,l:'Kado digital',c:'#fff',d:1,h:2.6}};
 const signs=[],SGN={surat:['#f4a0ae','#f06a8b'],detail:['#f3d9a0','#f5b54a'],rsvp:['#d9c2f0','#c79be6'],foto:['#f7a8c4','#6cc3e0']};
 function cuteSign(k){const s=spots[k],g=new THREE.Group(),b=new THREE.Group(),[fc,rc]=SGN[k];g.position.set(s.x,0,s.z);sc.add(g);s.h=2.4;
  B(.12,.9,.12,'#8a5a32',0,0,0,g);b.position.y=.9;g.add(b);
@@ -270,15 +281,31 @@ const modal=document.getElementById('modal'),sayEl=document.getElementById('say'
 const fd=document.createElement('div');fd.id='fade';app.appendChild(fd);
 function flash(){fd.style.transition='none';fd.style.opacity=.55;void fd.offsetWidth;fd.style.transition='opacity .55s ease-out';fd.style.opacity=0}
 function open(h){document.getElementById('in').innerHTML=h;modal.style.display='flex';modal.classList.remove('on');void modal.offsetWidth;modal.classList.add('on');flash()}
-document.getElementById('x').onclick=()=>{if(selfie)endSelfie();modal.classList.remove('on');setTimeout(()=>{if(!modal.classList.contains('on'))modal.style.display='none'},300)};
+document.getElementById('x').onclick=()=>{if(selfie)endSelfie();modal.classList.remove('on');setTimeout(()=>{if(!modal.classList.contains('on')){modal.style.display='none';const v=document.getElementById('vv');if(v)v.pause();document.getElementById('in').innerHTML=''}},300)};
 const ucapan=[];
 function show(k){burst(P.x,P.z);
  if(k==='surat')open('<h2>Surat buat kamu</h2><p>Halo, kamu yang spesial ✨</p><p>Kami lagi menyiapkan satu hari yang sederhana, hangat, dan penuh orang-orang tersayang. Kehadiranmu adalah hadiah terbaik buat kami.</p><p>Sampai ketemu di kebun, ya!<br><b>— Azzah &amp; Bayu</b></p>');
  if(k==='detail')open('<small style="background:var(--pink);color:#fff;border-radius:6px;padding:2px 8px;font-weight:800;font-size:10px">HARI-H · DETAIL ACARA</small><h2>Sabtu yang pelan dan cerah.</h2><p style="font-weight:800">⏳ '+hitung()+'</p><p>Semua acara ada di Rumah Kebun Cemara, di tengah kebun yang rindang.</p><div class="row"><b>15.00</b>Janji suci di bawah lengkung bunga</div><div class="row"><b>16.00</b>Makan malam di kebun</div><div class="row"><b>17.30</b>Potong kue &amp; sesi foto</div><div class="row"><b>19.00</b>Penutupan dengan lampu kebun</div><a class="btn" href="https://maps.google.com" target="_blank">Buka di Maps</a><a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Pernikahan+Azzah+%26+Bayu&amp;dates=20270619T080000Z/20270619T120000Z&amp;location=Rumah+Kebun+Cemara" target="_blank">Tambah ke kalender 📅</a>');
  if(k==='rsvp')rsvp();if(k==='kado')kado();
- if(k==='foto')open('<h2>Foto kami</h2><p>Dua orang yang sebentar lagi jadi satu keluarga 💛</p><div style="display:flex;gap:10px;margin-top:8px"><figure><img src="foto-azzah.jpg" alt="Azzah" onerror="ph(this)"><figcaption>Azzah</figcaption></figure><figure><img src="foto-bayu.jpg" alt="Bayu" onerror="ph(this)"><figcaption>Bayu</figcaption></figure></div>');
+ if(k==='foto')foto();
  if(k==='janji')say('Azzah & Bayu','Terima kasih sudah datang! Mau selfie bareng kami? Pencet tombol 📸 ya 💛')}
 function ph(i){const d=document.createElement('div');d.className='ph';d.textContent=i.alt==='Azzah'?'👰':'🤵';i.replaceWith(d)}
+const FOTO=['foto-azzah.jpg','foto-bayu.jpg','prewed-1.jpg','prewed-2.jpg','prewed-3.jpg','prewed-4.jpg','prewed-5.jpg','prewed-6.jpg'],VIDEO=['prewed.mp4'];
+const YT='vPg8e6-KC0M';
+function foto(){if(YT){open('<h2>Videotron 📺</h2><div id="vt" style="aspect-ratio:16/9"><iframe id="vy" src="https://www.youtube.com/embed/'+YT+'?autoplay=1&mute=1&loop=1&playlist='+YT+'&playsinline=1&rel=0&enablejsapi=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="width:100%;height:100%;border:0;display:block"></iframe></div><button id="vs" class="cb" style="margin:0 0 6px">🔊 Nyalakan suara</button><p>Dua orang yang sebentar lagi jadi satu keluarga 💛</p>');
+ let mt=true;document.getElementById('vs').onclick=function(){const y=document.getElementById('vy');if(!y)return;mt=!mt;y.contentWindow.postMessage(JSON.stringify({event:'command',func:mt?'mute':'unMute',args:[]}),'*');this.textContent=mt?'🔊 Nyalakan suara':'🔇 Matikan suara';if(!mt){lagu.pause();mus.style.opacity=.55}};return}
+ open('<h2>Videotron 📺</h2><div id="vt"><img id="vi" alt="" style="display:none"><video id="vv" playsinline muted preload="metadata" style="display:none;width:100%;height:100%;object-fit:contain"></video><i></i><span id="vc"></span></div><button id="vs" class="cb" style="display:none;margin:0 0 6px">🔊 Nyalakan suara</button><p id="vp">Memuat...</p>');
+ const pi=f=>new Promise(r=>{const m=new Image();m.onload=()=>r({s:f});m.onerror=()=>r(null);m.src=f}),pv=f=>fetch(f,{method:'HEAD'}).then(r=>r.ok?{s:f,v:1}:null).catch(()=>null);
+ Promise.all([...VIDEO.map(pv),...FOTO.map(pi)]).then(a=>{a=a.filter(Boolean);const vi=document.getElementById('vi');if(!vi)return;const vv=document.getElementById('vv'),vp=document.getElementById('vp'),vs=document.getElementById('vs'),vc=document.getElementById('vc');
+  if(!a.length){vp.textContent='Foto & video belum ditambahkan 💛';return}
+  vp.textContent='Dua orang yang sebentar lagi jadi satu keluarga 💛';
+  if(a.some(x=>x.v)){vs.style.display='';vs.onclick=()=>{vv.muted=!vv.muted;vs.textContent=vv.muted?'🔊 Nyalakan suara':'🔇 Matikan suara';if(!vv.muted){lagu.pause();mus.style.opacity=.55}}}
+  let n=0,t;const next=()=>{clearTimeout(t);if(!document.getElementById('vi'))return;const x=a[n%a.length];vc.textContent=(n%a.length+1)+' / '+a.length;n++;
+   if(x.v){vi.style.display='none';vv.style.display='block';vv.src=x.s;vv.onended=next;vv.onerror=()=>{if(a.length>1)next()};vv.play().catch(()=>{})}
+   else{vv.pause();vv.style.display='none';vv.onended=null;vi.style.display='block';vi.src=x.s;t=setTimeout(next,3800)}};
+  next()})}
+(function(){const w=document.getElementById('welcome'),PT=['🌸','🌼','🌷','💛'];let n=0;const iv=setInterval(()=>{if(!w.isConnected){clearInterval(iv);return}const e=document.createElement('span');e.className='pt';e.textContent=PT[n++%4];e.style.left=Math.random()*95+'%';e.style.animationDuration=6+Math.random()*4+'s';w.appendChild(e);setTimeout(()=>e.remove(),11000)},450);
+ document.getElementById('wgo').onclick=()=>{lagu.play().then(()=>{mus.style.opacity=1}).catch(()=>{});w.style.opacity=0;w.style.pointerEvents='none';setTimeout(()=>w.remove(),850)}})();
 let ayamN=0;
 function pesta(){const E=['🎉','💛','🌻','🌷','🐔','✨','💐','🎊'],a=document.getElementById('app');for(let i=0;i<36;i++){const e=document.createElement('span');e.className='cf';e.textContent=E[i%E.length];e.style.left=Math.random()*95+'%';e.style.animationDelay=Math.random()*.8+'s';e.style.animationDuration=2.4+Math.random()*1.6+'s';a.appendChild(e);setTimeout(()=>e.remove(),5000)}}
 document.getElementById('ayam').onclick=()=>{ayamN++;if(ayamN<3){say('Ayam','Kok-kok! 🐔 Tap lagi...')}else{ayamN=0;pesta();say('Ayam','Kok-kok-kok! Selamat menempuh hidup baru, Azzah & Bayu! 🐔💛')}};
